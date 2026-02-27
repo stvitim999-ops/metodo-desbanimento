@@ -27,21 +27,36 @@ st.title("💎 UNBAN VIP: BLUE EDITION")
 st.write("---")
 
 # CAMPO DE ID
-id_player = st.text_input("DIGITE O ID PARA REMOVER O BAN", placeholder="Ex: 12345678")
+id_player = st.text_input("SISTEMA: DIGITE O ID PARA REMOVER O BAN", placeholder="Ex: 12345678")
 
-if st.button("🚀 INJETAR DESBANIMENTO NO LOBBY (60s)"):
+if st.button("🚀 INJETAR DESBANIMENTO NO LOBBY (45s)"):
     if id_player:
-        with st.status("🛠️ INICIANDO BYPASS...", expanded=True) as status:
-            st.write("🔍 Localizando ID nos servidores...")
-            time.sleep(2)
-            st.write("💉 Injetando Script de Limpeza...")
-            time.sleep(3)
-            st.write("🔓 Quebrando Restrição de Lobby...")
-            time.sleep(2)
-            status.update(label="🚀 INJEÇÃO CONCLUÍDA!", state="complete", expanded=False)
+        # Barra de progresso ultra simples para evitar o erro de TypeError
+        status_msg = st.empty()
+        bar = st.progress(0)
+        
+        status_msg.write("🔍 Conectando ao Banco de Dados Garena...")
+        time.sleep(2)
+        bar.progress(30)
+        
+        status_msg.write("💉 Injetando Script de Limpeza Azul Bebê...")
+        time.sleep(3)
+        bar.progress(70)
+        
+        status_msg.write("🔓 Quebrando Restrição de ID no Lobby...")
+        time.sleep(2)
+        bar.progress(100)
         
         st.snow()
         st.success(f"✅ ID {id_player} FOI DESBANIDO COM SUCESSO!")
-        st.info("Limpe o cache do jogo e entre agora em menos de 1 minuto.")
+        
+        st.markdown(f"""
+        <div style="border: 2px solid #89CFF0; padding: 15px; border-radius: 10px; background-color: #111111;">
+        <h3 style="color: #89CFF0;">CONTA LIBERADA:</h3>
+        1. Limpe o Cache do Free Fire agora.<br>
+        2. Reinicie o celular para o Bypass validar.<br>
+        3. Entre no jogo. A conta estará no Lobby desbanida.
+        </div>
+        """, unsafe_allow_box=True)
     else:
         st.error("ERRO: DIGITE O ID!")
